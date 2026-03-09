@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 52, "column": 0}, "map": {"version":3,"sources":["file:///app/frontend/app/api/payments/create-order/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server'\nimport { randomUUID } from 'crypto'\n\nexport async function POST(request: NextRequest) {\n  return NextResponse.json({\n    order_id: `MOCK-${randomUUID().slice(0, 12).toUpperCase()}`,\n    status: 'CREATED',\n    message: 'PayPal integration placeholder (mock)',\n  })\n}\n"],"names":[],"mappings":";;;;AAAA;AACA;;;AAEO,eAAe,KAAK,OAAoB;IAC7C,OAAO,4JAAY,CAAC,IAAI,CAAC;QACvB,UAAU,CAAC,KAAK,EAAE,IAAA,mHAAU,IAAG,KAAK,CAAC,GAAG,IAAI,WAAW,IAAI;QAC3D,QAAQ;QACR,SAAS;IACX;AACF"}}]
-}

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///app/frontend/app/api/contact/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server'\n\nexport async function POST(request: NextRequest) {\n  const body = await request.json()\n  console.log(`[EMAIL MOCK] Contact from ${body.name} (${body.email}): ${body.subject}`)\n  return NextResponse.json({ status: 'sent', message: 'Your message has been sent.' })\n}\n"],"names":[],"mappings":";;;;AAAA;;AAEO,eAAe,KAAK,OAAoB;IAC7C,MAAM,OAAO,MAAM,QAAQ,IAAI;IAC/B,QAAQ,GAAG,CAAC,CAAC,0BAA0B,EAAE,KAAK,IAAI,CAAC,EAAE,EAAE,KAAK,KAAK,CAAC,GAAG,EAAE,KAAK,OAAO,EAAE;IACrF,OAAO,4JAAY,CAAC,IAAI,CAAC;QAAE,QAAQ;QAAQ,SAAS;IAA8B;AACpF"}}]
-}
