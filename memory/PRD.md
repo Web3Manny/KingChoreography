@@ -4,22 +4,23 @@
 Build a premium, user-friendly web platform for Brian King's choreography clients ("King Choreography"). The platform provides in-person choreography booking, virtual routine reviews, and an admin dashboard for managing the business.
 
 ## Tech Stack
-- **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS, shadcn/ui, framer-motion
-- **Backend**: FastAPI (Python) on port 8001, serving API routes
-- **Database**: Supabase (PostgreSQL)
-- **Authentication**: JWT-based admin auth
-- **Deployment Target**: Vercel (single Next.js project) — currently running in preview environment with separate frontend/backend
+- **Frontend & Backend**: Next.js 16 (App Router), TypeScript, Tailwind CSS, shadcn/ui, framer-motion
+- **API**: Next.js API Routes (all business logic in TypeScript)
+- **Database**: Supabase (PostgreSQL via REST API)
+- **Authentication**: JWT-based admin auth (jose library)
+- **Deployment Target**: Vercel (single Next.js project)
+- **Preview Environment**: FastAPI reverse proxy on port 8001 forwards /api/* to Next.js on port 3000
 
-## Architecture
+## Architecture (Monolithic Next.js)
 ```
-/app/frontend/          — Next.js 16 app (port 3000)
+/app/frontend/          — Single Next.js project (frontend + API)
 ├── app/
 │   ├── (public)/       — Public pages with Header/Footer layout
 │   │   ├── page.tsx    — Home
 │   │   ├── about/
 │   │   ├── services/
-│   │   ├── apply/      — Application funnel
-│   │   ├── submit/     — Submission funnel (5-step)
+│   │   ├── apply/      — Application funnel + /apply/confirmed
+│   │   ├── submit/     — Submission funnel (5-step) + /submit/confirmed
 │   │   ├── choreography/
 │   │   ├── reviews/
 │   │   ├── upgrades/
@@ -29,51 +30,57 @@ Build a premium, user-friendly web platform for Brian King's choreography client
 │   │   └── contact/
 │   ├── admin/          — Admin dashboard (JWT protected)
 │   │   ├── login/
-│   │   ├── applications/
-│   │   ├── submissions/
+│   │   ├── applications/ + [id] detail
+│   │   ├── submissions/ + [id] detail
 │   │   ├── queue/
 │   │   └── services/
-│   └── api/            — Next.js API routes (for Vercel deployment)
+│   └── api/            — ALL backend logic (TypeScript)
+│       ├── services/
+│       ├── applications/
+│       ├── submissions/ + /free
+│       ├── calculate-price/
+│       ├── auth/ (login, me)
+│       ├── contact/
+│       ├── payments/ (create-order, capture-order) [MOCKED]
+│       └── admin/ (stats, applications, submissions, queue, services, recent-activity)
 ├── components/
 │   ├── layout/         — Header, Footer
 │   └── ui/             — shadcn/ui components
-├── lib/                — Utilities (api client, auth, pricing, supabase)
-└── .env.local          — Supabase credentials
+├── lib/
+│   ├── api.ts          — Frontend API client (relative fetch)
+│   ├── supabase.ts     — Supabase REST helpers (server-side)
+│   ├── auth.ts         — JWT token creation/verification
+│   ├── pricing.ts      — Pricing engine + review week assignment
+│   └── utils.ts        — Tailwind merge utility
+└── .env.local          — Supabase credentials, admin config
 
-/app/backend/           — FastAPI backend (port 8001, handles /api in preview)
+/app/backend/server.py  — Thin reverse proxy (preview env only, not needed on Vercel)
 ```
-
-## User Personas
-1. **Gym Owners/Coaches** — Apply for choreography, submit routines for review
-2. **Brian King (Admin)** — Manage applications, review queue, services, submissions
 
 ## Core Features (Phase 1) — COMPLETED
 - [x] 10+ public pages (Home, About, Services, Choreography, Reviews, Upgrades, Monthly, Testimonials, FAQ, Contact)
 - [x] Application funnel — multi-field form for new client applications
 - [x] Submission funnel — 5-step form (Service → Contact → Details → Video → Payment)
 - [x] Dynamic pricing engine (client/non-client rates, athlete count, session length, add-ons)
+- [x] Review week assignment logic (Monday cutoff)
 - [x] Admin dashboard with stats, quick links, recent activity
-- [x] Admin applications management (list, detail, status updates, notes)
-- [x] Admin submissions management (list, detail, status updates, queue)
-- [x] Admin services CRUD
-- [x] Review week assignment logic
+- [x] Admin CRUD for applications, submissions, services
+- [x] Admin review queue view
+- [x] JWT authentication for admin
+- [x] All API logic in Next.js API routes (TypeScript)
 - [x] Dark theme with gold (#D4AF37) and silver (#A8A9AD) accents
-- [x] Responsive design with mobile navigation
 
 ## Phase 2 — FUTURE
 - [ ] Monthly Reviews Subscription functionality
 - [ ] Real PayPal integration (currently MOCKED)
 - [ ] Real Resend email integration (currently MOCKED)
+- [ ] Clean up old /frontend/src/ React source files
 
 ## Credentials
 - **Admin**: brian@kingchoreography.com / KingChoreography2025!
 - **Supabase URL**: https://frwldthcljuncpjxpefi.supabase.co
 - **Preview URL**: https://king-choreo-next.preview.emergentagent.com
 
-## What's Been Implemented (Feb 2026)
-- Complete Next.js migration from React/FastAPI dual-project to Next.js frontend + FastAPI backend
-- All 10+ public pages ported to Next.js App Router
-- Application and Submission funnels fully functional
-- Admin dashboard with authentication, application/submission management
-- API client updated for Next.js architecture
-- All tests passing (14/14 in iteration_2.json)
+## Testing Status
+- **iteration_2.json**: 14/14 frontend tests passed
+- **iteration_3.json**: 22/22 backend+frontend tests passed (all API routes verified)
