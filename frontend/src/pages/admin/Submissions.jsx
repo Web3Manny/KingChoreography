@@ -22,9 +22,10 @@ export default function AdminSubmissions() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    setLoading(true);
     const params = {};
-    if (serviceFilter) params.service_type = serviceFilter;
-    if (statusFilter) params.review_status = statusFilter;
+    if (serviceFilter && serviceFilter !== 'all') params.service_type = serviceFilter;
+    if (statusFilter && statusFilter !== 'all') params.review_status = statusFilter;
     getAdminSubmissions(params).then(r => setSubmissions(r.data)).catch(() => {}).finally(() => setLoading(false));
   }, [serviceFilter, statusFilter]);
 

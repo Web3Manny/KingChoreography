@@ -371,13 +371,25 @@ async def get_me(admin=Depends(verify_admin)):
 @api_router.get("/admin/stats")
 async def admin_stats(admin=Depends(verify_admin)):
     now = datetime.now(timezone.utc)
-    week_ago = (now - timedelta(days=7)).isoformat()
-    month_start = now.replace(day=1, hour=0, minute=0, second=0).isoformat()
+    week_ago = (now - timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S')
+    month_start = now.replace(day=1, hour=0, minute=0, second=0).strftime('%Y-%m-%dT%H:%M:%S')
 
-    apps_week = await supabase_get("applications", f"submitted_at=gte.{week_ago}&select=id")
-    subs_week = await supabase_get("submissions", f"submitted_at=gte.{week_ago}&select=id")
-    paid_month = await supabase_get("submissions", f"payment_status=eq.paid&submitted_at=gte.{month_start}&select=calculated_amount")
-    queued = await supabase_get("submissions", f"review_status=eq.queued&select=id")
+    try:
+        apps_week = await supabase_get("applications", f"submitted_at=gte.{week_ago}&select=id")
+    except Exception:
+        apps_week = []
+    try:
+        subs_week = await supabase_get("submissions", f"submitted_at=gte.{week_ago}&select=id")
+    except Exception:
+        subs_week = []
+    try:
+        paid_month = await supabase_get("submissions", f"payment_status=eq.paid&submitted_at=gte.{month_start}&select=calculated_amount")
+    except Exception:
+        paid_month = []
+    try:
+        queued = await supabase_get("submissions", f"review_status=eq.queued&select=id")
+    except Exception:
+        queued = []
 
     revenue = sum(float(s.get('calculated_amount', 0)) for s in paid_month)
 

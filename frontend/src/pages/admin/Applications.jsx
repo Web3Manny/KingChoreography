@@ -18,8 +18,9 @@ export default function AdminApplications() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    setLoading(true);
     const params = {};
-    if (statusFilter) params.status = statusFilter;
+    if (statusFilter && statusFilter !== 'all') params.status = statusFilter;
     getAdminApplications(params).then(r => setApplications(r.data)).catch(() => {}).finally(() => setLoading(false));
   }, [statusFilter]);
 
