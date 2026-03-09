@@ -31,6 +31,15 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.25rem;
+
+    /* King Choreography Brand */
+    --kc-gold: #D4AF37;
+    --kc-gold-bright: #FFD700;
+    --kc-gold-dark: #B8860B;
+    --kc-black: #0A0A0A;
+    --kc-charcoal: #121212;
+    --kc-silver: #A8A9AD;
+    --kc-silver-light: #C0C0C0;
   }
 }
 
@@ -46,7 +55,7 @@ html {
 
 body {
   font-family: 'Manrope', sans-serif;
-  background-color: #0A0A0A;
+  background-color: var(--kc-black);
   color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,7 +64,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 @layer base {
@@ -70,12 +79,54 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Gold gradient text */
+/* Gold gradient text — matches logo's metallic crown */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+  background: linear-gradient(
+    135deg, 
+    #B8860B 0%, 
+    #D4AF37 25%, 
+    #FFD700 50%, 
+    #D4AF37 75%, 
+    #B8860B 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Metallic gold shimmer for buttons/accents */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 30%, #FFD700 50%, #D4AF37 70%, #B8860B 100%);
+}
+
+/* Silver border accent — matches logo shield border */
+.border-silver {
+  border-color: var(--kc-silver);
+}
+
+/* Shield/badge card style — inspired by logo shape */
+.badge-card {
+  position: relative;
+  border: 1px solid rgba(168, 169, 173, 0.15);
+  background: linear-gradient(180deg, rgba(18, 18, 18, 1) 0%, rgba(10, 10, 10, 1) 100%);
+}
+.badge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--kc-gold), transparent);
+}
+
+/* Gold border glow on hover */
+.gold-glow-hover {
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.gold-glow-hover:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
 }
 
 /* Subtle grain texture */
@@ -87,24 +138,24 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.02;
   z-index: 1000;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: var(--kc-black);
 }
 ::-webkit-scrollbar-thumb {
   background: #27272A;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4AF37;
+  background: var(--kc-gold);
 }
 
 /* Animations */
@@ -113,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes shimmer {
+@keyframes metalShimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
@@ -122,14 +173,47 @@ h1, h2, h3, h4, h5, h6 {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+.animate-metal-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
   background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: metalShimmer 4s infinite;
 }
 
 /* Selection */
 ::selection {
   background-color: rgba(212, 175, 55, 0.3);
   color: #FFFFFF;
+}
+
+/* Gold button styling — matching logo's metallic gold */
+.btn-gold {
+  background: linear-gradient(135deg, #B8860B 0%, #D4AF37 40%, #FFD700 60%, #D4AF37 100%);
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 40%, #FFD700 60%, #D4AF37 100%);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+}
+
+/* Outline button with silver accent */
+.btn-outline-silver {
+  border: 1px solid var(--kc-silver);
+  color: #fff;
+  transition: all 0.2s;
+}
+.btn-outline-silver:hover {
+  border-color: var(--kc-gold);
+  color: var(--kc-gold);
+}
+
+/* Divider with logo-style gold line */
+.divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--kc-gold-dark), var(--kc-gold), var(--kc-gold-dark), transparent);
 }

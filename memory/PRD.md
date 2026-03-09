@@ -68,6 +68,15 @@ Build the King Choreography website from the GitHub repo Web3Manny/KingChoreogra
 - Mock PayPal payment flow
 - Mock email notifications
 
+## Styling Update — March 9, 2026
+- Integrated actual BK Logo (TRSP.png) throughout: header, footer, hero, admin sidebar, admin login
+- Updated color palette to match logo: metallic gold gradients (#B8860B → #D4AF37 → #FFD700), silver accents (#A8A9AD), charcoal backgrounds
+- Added badge-card styling with gold top-line accents (inspired by logo's shield/badge shape)
+- Added btn-gold class with metallic gradient matching logo's crown
+- Silver/gray navigation text matching logo's premium tone
+- Gold gradient dividers matching logo borders
+- Gold glow hover effects on interactive cards
+
 ## Testing Status
 - Backend: 100% (10/10 tests passing including stats fix)
 - Frontend: 100% (all core flows working)

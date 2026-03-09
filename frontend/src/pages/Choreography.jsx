@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Crown, CheckCircle, Music, Sparkles, Target } from 'lucide-react';
+import { ArrowRight, CheckCircle, Music, Sparkles, Target } from 'lucide-react';
+
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_king-choreography/artifacts/uem2uv73_BK%20Logo%20TRSP.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 
@@ -26,7 +28,7 @@ export default function Choreography() {
             <span className="text-[#D4AF37] text-xs font-bold tracking-[0.3em] uppercase">In-Person Services</span>
             <h1 className="font-['Oswald'] text-5xl sm:text-6xl font-bold uppercase mt-4 mb-6 text-white leading-[0.95]">Choreography<br /><span className="text-gold-gradient">Services</span></h1>
             <p className="text-white/50 text-lg leading-relaxed mb-10">Brian King travels to your gym to create custom competition routines. From full-program choreography to intensive camps, every session is designed to bring out the best in your athletes.</p>
-            <Link to="/apply" className="inline-flex items-center gap-2 px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors" data-testid="choreo-apply-cta">
+            <Link to="/apply" className="inline-flex items-center gap-2 btn-gold px-10 py-5 text-sm" data-testid="choreo-apply-cta">
               Apply for Availability <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -73,7 +75,7 @@ export default function Choreography() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-['Oswald'] text-3xl sm:text-4xl font-bold uppercase text-white mb-6">Ready to Get Started?</h2>
           <p className="text-white/50 mb-10">Applications are reviewed on a first-come, first-served basis. Secure your spot for the upcoming season.</p>
-          <Link to="/apply" className="inline-flex items-center gap-2 px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors">
+          <Link to="/apply" className="inline-flex items-center gap-2 btn-gold px-10 py-5 text-sm">
             Apply for Availability <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

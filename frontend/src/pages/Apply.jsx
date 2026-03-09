@@ -188,7 +188,7 @@ export default function Apply() {
             </div>
 
             <button type="submit" disabled={loading}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-12 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors disabled:opacity-50"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-gold px-12 py-5 text-sm disabled:opacity-50"
               data-testid="apply-submit-btn"
             >
               {loading ? 'Submitting...' : 'Submit Application'}

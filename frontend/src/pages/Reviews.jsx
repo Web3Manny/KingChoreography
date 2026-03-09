@@ -35,12 +35,12 @@ export default function Reviews() {
               <p className="text-[#D4AF37] text-xs font-bold tracking-wider uppercase mb-2">Current Client</p>
               <p className="font-['Oswald'] text-5xl font-bold text-white mb-2">$150</p>
               <p className="text-white/40 text-sm mb-6">Per review submission</p>
-              <Link to="/submit" className="inline-flex items-center gap-2 px-8 py-3 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors">
+              <Link to="/submit" className="inline-flex items-center gap-2 btn-gold px-8 py-3 text-sm">
                 Submit Now <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="bg-[#0A0A0A] border border-[#D4AF37]/20 p-8" data-testid="pricing-nonclient">
-              <p className="text-white/60 text-xs font-bold tracking-wider uppercase mb-2">Non-Client</p>
+              <p className="text-[#A8A9AD] text-xs font-bold tracking-wider uppercase mb-2">Non-Client</p>
               <p className="font-['Oswald'] text-5xl font-bold text-white mb-2">$250</p>
               <p className="text-white/40 text-sm mb-6">Per review submission</p>
               <Link to="/submit" className="inline-flex items-center gap-2 px-8 py-3 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors">
@@ -76,7 +76,7 @@ export default function Reviews() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-['Oswald'] text-3xl font-bold uppercase text-white mb-6">Get Expert Feedback</h2>
           <p className="text-white/50 mb-8">Turnaround time is typically within 1 review week. Submissions received by Monday at 11:59 PM ET are included in the current week's queue.</p>
-          <Link to="/submit" className="inline-flex items-center gap-2 px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors" data-testid="reviews-submit-cta">
+          <Link to="/submit" className="inline-flex items-center gap-2 btn-gold px-10 py-5 text-sm" data-testid="reviews-submit-cta">
             Submit for Review <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

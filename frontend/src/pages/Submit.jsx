@@ -317,7 +317,7 @@ export default function Submit() {
                   </div>
 
                   <button onClick={handlePayAndSubmit} disabled={loading}
-                    className="w-full inline-flex items-center justify-center gap-2 px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors disabled:opacity-50"
+                    className="w-full inline-flex items-center justify-center gap-2 btn-gold px-10 py-5 text-sm disabled:opacity-50"
                     data-testid="submit-pay-btn"
                   >
                     {loading ? 'Processing...' : form.service_type === 'free_tier' ? 'Submit Update' : 'Complete Payment (Mock)'}
@@ -340,7 +340,7 @@ export default function Submit() {
             </button>
             {currentStep < steps.length - 1 && (
               <button onClick={() => setCurrentStep(currentStep + 1)} disabled={!canProceed()}
-                className="inline-flex items-center gap-2 px-8 py-3 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] disabled:opacity-30 transition-colors"
+                className="inline-flex items-center gap-2 btn-gold px-8 py-3 text-sm disabled:opacity-30"
                 data-testid="submit-next-btn"
               >
                 Next <ChevronRight className="w-4 h-4" />

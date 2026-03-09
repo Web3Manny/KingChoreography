@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Crown, Award, MapPin, Users } from 'lucide-react';
+import { ArrowRight, Award, Users } from 'lucide-react';
+
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_king-choreography/artifacts/uem2uv73_BK%20Logo%20TRSP.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
 
@@ -44,8 +46,8 @@ export default function About() {
                   <span className="font-['Oswald'] text-5xl font-bold text-gold-gradient">BK</span>
                   <p className="text-white/40 text-xs tracking-wider mt-1">FOUNDER & HEAD CHOREOGRAPHER</p>
                 </div>
-                <div className="absolute top-4 right-4 z-20 w-10 h-10 border border-[#D4AF37]/30 flex items-center justify-center">
-                  <Crown className="w-5 h-5 text-[#D4AF37]" />
+                <div className="absolute top-4 right-4 z-20">
+                  <img src={LOGO_URL} alt="" className="h-14 w-auto opacity-20" />
                 </div>
               </div>
             </motion.div>
@@ -64,7 +66,7 @@ export default function About() {
               {credentials.map((item, i) => (
                 <motion.div key={i} variants={fadeUp} className="flex items-start gap-3 p-4 bg-[#0A0A0A] border border-white/5">
                   <Award className="w-5 h-5 text-[#D4AF37] mt-0.5 shrink-0" />
-                  <span className="text-white/70 text-sm">{item}</span>
+                  <span className="text-[#A8A9AD]/70 text-sm">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -95,7 +97,7 @@ export default function About() {
           <h2 className="font-['Oswald'] text-3xl sm:text-4xl font-bold uppercase text-white mb-6">Work with Brian</h2>
           <p className="text-white/50 mb-10">Ready to take your program to the next level? Apply for in-person choreography or submit a routine for virtual review.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/apply" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors" data-testid="about-apply-cta">
+            <Link to="/apply" className="inline-flex items-center justify-center gap-2 btn-gold px-8 py-4 text-sm" data-testid="about-apply-cta">
               Apply for Availability <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/services" className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-bold uppercase tracking-wider text-sm hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors">

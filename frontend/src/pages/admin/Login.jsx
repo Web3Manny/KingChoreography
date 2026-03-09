@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Crown, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { login } from '@/lib/api';
 import { toast } from 'sonner';
+
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_king-choreography/artifacts/uem2uv73_BK%20Logo%20TRSP.png';
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -32,8 +34,8 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-4" data-testid="admin-login-page">
       <div className="w-full max-w-sm">
         <div className="text-center mb-10">
-          <div className="w-14 h-14 bg-[#D4AF37] flex items-center justify-center mx-auto mb-6">
-            <Crown className="w-8 h-8 text-black" />
+          <div className="w-20 h-20 mx-auto mb-6">
+            <img src={LOGO_URL} alt="King Choreography" className="h-20 w-auto object-contain" />
           </div>
           <h1 className="font-['Oswald'] text-2xl font-bold uppercase text-white tracking-wider">Admin Login</h1>
           <p className="text-white/40 text-sm mt-2">King Choreography Dashboard</p>
@@ -56,7 +58,7 @@ export default function AdminLogin() {
             </button>
           </div>
           <button type="submit" disabled={loading}
-            className="w-full px-8 py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors disabled:opacity-50"
+            className="w-full btn-gold px-8 py-4 text-sm disabled:opacity-50"
             data-testid="login-submit-btn"
           >
             {loading ? 'Signing in...' : 'Sign In'}

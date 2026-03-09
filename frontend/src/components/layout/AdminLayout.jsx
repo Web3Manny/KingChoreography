@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
-import { Crown, LayoutDashboard, Users, FileText, Calendar, Settings, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, Calendar, Settings, LogOut, Menu, X } from 'lucide-react';
+
+const LOGO_URL = 'https://customer-assets.emergentagent.com/job_king-choreography/artifacts/uem2uv73_BK%20Logo%20TRSP.png';
 
 export const AdminLayout = ({ children }) => {
   const location = useLocation();
@@ -38,12 +40,7 @@ export const AdminLayout = ({ children }) => {
       <aside className="hidden lg:flex lg:flex-col w-64 bg-[#0A0A0A] border-r border-white/5 fixed h-full z-40" data-testid="admin-sidebar">
         <div className="p-6 border-b border-white/5">
           <Link to="/admin" className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-[#D4AF37] flex items-center justify-center">
-              <Crown className="w-5 h-5 text-black" />
-            </div>
-            <div>
-              <span className="font-['Oswald'] text-sm font-bold tracking-wider text-white uppercase">ADMIN</span>
-            </div>
+            <img src={LOGO_URL} alt="King Choreography" className="h-10 w-auto" />
           </Link>
         </div>
         <nav className="flex-1 p-4 space-y-1">

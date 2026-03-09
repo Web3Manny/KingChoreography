@@ -70,7 +70,7 @@ export default function Upgrades() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-['Oswald'] text-3xl font-bold uppercase text-white mb-6">Upgrade Your Routine</h2>
           <p className="text-white/50 mb-10">Take your routine to the next level with Brian King's virtual upgrade sessions.</p>
-          <Link to="/submit" className="inline-flex items-center gap-2 px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider text-sm hover:bg-[#FFD700] transition-colors" data-testid="upgrades-submit-cta">
+          <Link to="/submit" className="inline-flex items-center gap-2 btn-gold px-10 py-5 text-sm" data-testid="upgrades-submit-cta">
             Get Started <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
