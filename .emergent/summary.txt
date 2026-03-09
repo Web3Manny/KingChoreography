@@ -1,0 +1,166 @@
+<analysis>**original_problem_statement**:
+The user wants to build a web application for King Choreography.
+
+**PRODUCT REQUIREMENTS from **:
+- **Goal**: A premium, user-friendly platform for Brian King's choreography clients.
+- **Tech Stack**: Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase (database, auth, storage).
+- **Deployment**: Vercel.
+- **Phases**:
+    - **Phase 1 (Current Focus)**:
+        - **Public Pages**: Home, About, Services, Choreography Portfolio, Reviews, Upgrades, Monthly Coaching, Testimonials, FAQ, Contact.
+        - **Application Funnel**: A multi-step form for new clients to apply.
+        - **Submission Funnel**: A multi-step form for existing clients to submit routine videos for review. Includes conditional logic and dynamic pricing.
+        - **Admin Dashboard**: Secure area for Brian to manage applications, submissions, the review queue, and services.
+        - **Business Logic**: Server-side pricing calculation, automatic assignment of review weeks.
+    - **Phase 2 (Future)**:
+        - Monthly Reviews Subscription functionality.
+        - Full PayPal and Resend integration (currently mocked).
+- **User's last request**: Rebuild this project in Next.js with TypeScript, Tailwind CSS, and shadcn/ui. Keep everything you just built — all 10 public pages, the application funnel, the submission funnel, the admin dashboard, all the business logic, pricing engine, and review week assignment. But move it into a single Next.js codebase using API routes or server actions for the backend instead of FastAPI. The database stays Supabase. This needs to deploy as one project on Vercel, not a separate frontend and backend.
+
+**User's preferred language**: English
+
+**what currently exists?**
+The agent has initiated a major architectural migration. Previously, a complete and functional application existed with a React frontend () and a Python FastAPI backend (). Following a user request, the agent is rebuilding the entire application into a monolithic Next.js 14 project. The old  and  directories still exist but are being superseded. The Supabase database is fully configured and populated with tables and seed data.
+
+**Last working item**:
+-   **Last item agent was working**: Migrating the application from a React/FastAPI stack to a monolithic Next.js application. The agent has set up the new Next.js project structure, created configuration files (, , etc.), established utility/library files for Supabase client and helpers (), and created all the necessary API route handlers under . The last action was creating the root layout () and global CSS ().
+-   **Status**: IN PROGRESS
+-   **Agent Testing Done**: N
+-   **Which testing method agent to use?**: both
+-   **User Testing Done**: N
+
+**All Pending/In progress Issue list**:
+There are no specific bugs. The entire project is in an in-progress state due to the migration.
+
+**In progress Task List**:
+-   **Task 1**: Complete the migration from React/FastAPI to Next.js.
+    -   **Where to resume**: The agent has just created the API routes and the root layout. The next step is to create the public-facing layout () and the admin layout (), followed by porting all the pages from the old React app into the new Next.js  directory structure.
+    -   **What will be achieved with this?**: The application will be a single, deployable Next.js project as requested by the user, which will replace the previous two-part system.
+    -   **Status**: IN PROGRESS
+    -   **Should Test frontend/backend/both after fix?**: both
+    -   **Blocked on something**: No.
+
+**Upcoming and Future Tasks**
+-   **Upcoming Tasks**:
+    -   (P0) Create public and admin layouts in .
+    -   (P0) Port all React pages (public, funnel, admin) to Next.js pages in .
+    -   (P0) Move shadcn/ui components from  to .
+    -   (P0) Configure supervisor to proxy  requests to the Next.js app (running on port 3000) and remove the FastAPI backend service.
+    -   (P0) Thoroughly test the migrated Next.js application end-to-end using the testing agent.
+    -   (P1) Clean up by deleting the old  and  directories.
+-   **Future Tasks**:
+    -   (P2) Implement the Monthly Reviews Subscription feature (Phase 2).
+    -   (P2) Integrate real PayPal and Resend services, replacing the current mocks.
+
+**Completed work in this session**
+-   **Recently completed**:
+    -   A full-stack choreography business platform was built using React (frontend) and FastAPI (backend). (DONE, but now being replaced).
+    -   Supabase database was set up with tables for services, applications, submissions, users, etc. (DONE).
+    -   All Phase 1 features were implemented including 10+ pages, application/submission funnels, and an admin dashboard. (DONE, but now being replaced).
+    -   The UI/UX was designed and refined to match the client's logo, featuring a dark theme with metallic gold and silver accents. (DONE).
+    -   Started the migration to a monolithic Next.js application. (IN PROGRESS).
+        -   Created Next.js project structure ().
+        -   Created all Next.js API Routes in .
+        -   Created utility files in .
+        -   Created the root layout and global styles.
+
+**Earlier issues found/mentioned but not fixed**
+None.
+
+**Known issue recurrence from previous fork**
+None.
+
+**Code Architecture**
+The project is being migrated to a standard Next.js 14 App Router structure.
+
+The old  and  directories are still present but are slated for deletion.
+
+**Key Technical Concepts**
+-   **Framework**: Next.js 14 (App Router)
+-   **Language**: TypeScript
+-   **Styling**: Tailwind CSS, shadcn/ui
+-   **Backend**: Next.js API Routes / Server Actions
+-   **Database**: Supabase (PostgreSQL)
+-   **Authentication**: Supabase Auth (JWT-based)
+
+**key DB schema**
+-   **users**: Manages user authentication.
+-   **services**: Stores service details and pricing (e.g., 'Review & Feedback').
+-   **applications**: Stores new client applications from the  form.
+-   **submissions**: Stores video submissions from existing clients for review.
+-   **reviews**: (Likely for testimonials or feedback, linked to submissions).
+-   **clients**: (Likely stores client-specific information and relationships).
+
+**changes in tech stack**
+-   **Major Migration**: The architecture is changing from a dual-project setup (React SPA + FastAPI backend) to a single, monolithic Next.js 14 application. The Python backend is being completely replaced by TypeScript-based Next.js API Routes.
+
+**All files of reference**
+*Files created/updated for the Next.js migration:*
+-   : Updated with Next.js dependencies.
+-   , , : New configuration files for the Next.js project.
+-   , , : Utility files for database connection, auth helpers, and general utilities.
+-   : All backend logic, ported from FastAPI to Next.js API Routes.
+-   , : The root layout and styles for the new application.
+
+*Old files (to be deprecated):*
+-   : The entire old React application.
+-   : The entire old FastAPI application.
+
+**Areas that need refactoring**:
+-   The  and  directories should be deleted once the Next.js migration is complete and verified to avoid confusion and redundant code.
+
+**key api endpoints**
+All endpoints are now Next.js API Routes under :
+-   : , 
+-   : , 
+-   : , 
+-   : , 
+-   : 
+-   : 
+-   : 
+-   : 
+-   And more for admin CRUD operations.
+
+**Critical Info for New Agent**
+-   **You are in the middle of a major architectural migration.** Do not attempt to fix or run the old  and  applications. All focus should be on completing the new Next.js app in the  directory.
+-   The goal is to create a single Vercel-deployable project. The backend logic has been ported to . The next step is to port all the frontend pages and components.
+-   The Supabase database, credentials, and table structure are all set up and working. Use the provided environment variables.
+-   Once the page migration is complete, the  configuration will need to be updated to run the Next.js app on port 3000 and remove the FastAPI service.
+
+**documents and test reports created in this job**
+-   
+-   
+
+**Last 10 User Messages and any pending HUMAN messages**
+1.  **User**: Rebuild this project in Next.js... - The user initiated the major architectural migration from React/FastAPI to a monolithic Next.js application. (IN PROGRESS)
+2.  **User**: All functionality confirmed working. Let me update the PRD and finish: - The user was prompted this by the agent before the final  call of the previous task.
+3.  **User**: Provided the logo image and asked to match the styling. (RESOLVED)
+4.  **User**: Approved the completed Phase 1 implementation of the React/FastAPI app. (RESOLVED, but now being migrated)
+5.  **User**: Provided the database password. (RESOLVED)
+6.  **User**: Provided the full Supabase connection string. (RESOLVED)
+7.  **User**: Provided Supabase URL and keys, along with pricing details. (RESOLVED)
+8.  **User**: Clarified that the GitHub repo was now public. (RESOLVED)
+
+**Project Health Check:**
+-   **Broken**: The application is currently in a broken, non-runnable state because the migration is mid-flight. The old backend/frontend are disconnected, and the new Next.js app is incomplete.
+
+**3rd Party Integrations**
+-   **Supabase**: Used for PostgreSQL database, authentication, and storage. Keys are provided.
+-   **PayPal**: Planned for Phase 2. Currently mocked.
+-   **Resend**: Planned for Phase 2. Currently mocked.
+
+**Testing status**
+-   Testing was successfully performed on the *previous* React/FastAPI architecture.
+-   No testing has been performed on the new Next.js application.
+-   **Test files created**: None.
+
+**Credentials to test flow:**
+-   **Supabase URL**: 
+-   **Supabase Anon/Publishable Key**: 
+-   **Supabase Service/Secret Key**: 
+-   **Database Password**: 
+-   **DB Connection String (Pooler)**: 
+-   **Admin Credentials** (from testing agent run):  / 
+
+**What agent forgot to execute**
+The agent has not forgotten anything. It is correctly executing a large, multi-step migration plan as requested by the user.</analysis>

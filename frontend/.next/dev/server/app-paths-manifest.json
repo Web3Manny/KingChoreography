@@ -1,0 +1,12 @@
+{
+  "/(public)/about/page": "app/(public)/about/page.js",
+  "/(public)/apply/page": "app/(public)/apply/page.js",
+  "/(public)/contact/page": "app/(public)/contact/page.js",
+  "/(public)/faq/page": "app/(public)/faq/page.js",
+  "/(public)/page": "app/(public)/page.js",
+  "/(public)/services/page": "app/(public)/services/page.js",
+  "/(public)/submit/page": "app/(public)/submit/page.js",
+  "/(public)/testimonials/page": "app/(public)/testimonials/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/page": "app/admin/page.js"
+}
