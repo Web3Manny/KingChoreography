@@ -37,10 +37,10 @@ export function Footer() {
             <h4 className="font-heading text-sm font-bold uppercase tracking-wider text-[#A8A9AD] mb-6">Connect</h4>
             <div className="space-y-3">
               <a href="mailto:brian@kingchoreography.com" className="flex items-center gap-2 text-sm text-[#A8A9AD]/50 hover:text-[#D4AF37] transition-colors">
-                <Mail className="w-4 h-4" /> brian@kingchoreography.com
+                <Mail className="w-4 h-4" /><span>brian@kingchoreography.com</span>
               </a>
               <a href="https://instagram.com/kingchoreography" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-[#A8A9AD]/50 hover:text-[#D4AF37] transition-colors">
-                <Instagram className="w-4 h-4" /> @kingchoreography
+                <Instagram className="w-4 h-4" /><span>@kingchoreography</span>
               </a>
             </div>
             <div className="mt-6">
