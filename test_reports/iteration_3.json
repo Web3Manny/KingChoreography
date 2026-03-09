@@ -1,0 +1,93 @@
+{
+  "summary": "Comprehensive testing of King Choreography Next.js migration completed. All 22 backend API tests pass. Frontend tests pass. Fixed 1 bug in free submissions route (missing service_type field). All API routes work through the FastAPI proxy to Next.js correctly.",
+
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "All pages",
+        "issues": ["Dev tools indicator '1 issue' badge in bottom-left corner - Next.js dev mode warning, not visible in production"]
+      }
+    ]
+  },
+
+  "passed_tests": [
+    "GET /api/services returns 6 services (3 in_person + 3 virtual)",
+    "GET /api/services?category=virtual returns 3 virtual services",
+    "GET /api/services?category=in_person returns 3 in_person services",
+    "POST /api/applications creates application with status 'new' and submitted_at",
+    "POST /api/submissions with review_feedback service: $150 for client, $250 for non-client",
+    "POST /api/submissions/free accepts is_existing_client=true",
+    "POST /api/submissions/free rejects non-clients with 400",
+    "POST /api/calculate-price returns correct pricing (5 athletes x $40 = $200 for virtual_upgrade)",
+    "POST /api/auth/login with correct credentials returns JWT token",
+    "POST /api/auth/login with wrong credentials returns 401",
+    "GET /api/admin/stats (with token) returns stats object",
+    "GET /api/admin/stats without token returns 401",
+    "GET /api/admin/applications (with token) returns list",
+    "GET /api/admin/submissions (with token) returns list",
+    "GET /api/admin/queue (with token) returns week info and submissions",
+    "GET /api/admin/services (with token) returns all services",
+    "GET /api/admin/recent-activity (with token) returns activity feed",
+    "PATCH /api/admin/applications/{id} updates status",
+    "POST /api/payments/create-order returns mock order_id (MOCKED)",
+    "POST /api/payments/capture-order returns mock txn_id (MOCKED)",
+    "POST /api/contact returns success",
+    "Homepage renders correctly with navigation and CTAs",
+    "Submit page loads 3 virtual services and multi-step funnel works",
+    "Admin login works and dashboard loads stats",
+    "Apply form loads with all required fields"
+  ],
+
+  "test_report_links": [
+    "/app/backend/tests/test_api_comprehensive.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+
+  "action_items": [],
+
+  "critical_code_review_comments": [
+    "BUG FIXED: /app/frontend/app/api/submissions/free/route.ts was missing service_type field - added service_type: 'free_tier' to fix Supabase not-null constraint error",
+    "API routes properly filter unknown fields via Supabase strict mode - test payloads should only include valid schema fields",
+    "Supabase 'applications' table has check constraint on timeframe field - valid values are 'asap', 'next_season' (not 'next_month')"
+  ],
+
+  "updated_files": [
+    "/app/frontend/app/api/submissions/free/route.ts",
+    "/app/backend/tests/test_api_comprehensive.py"
+  ],
+
+  "success_rate": {
+    "backend": "100% (22/22 tests passed)",
+    "frontend": "100% (all core flows working)"
+  },
+
+  "test_credentials": {
+    "admin_email": "brian@kingchoreography.com",
+    "admin_password": "KingChoreography2025!"
+  },
+
+  "seed_data_creation": "Test data created with TEST_ prefix: applications, submissions",
+
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+
+  "context_for_next_testing_agent": "All backend API endpoints tested via pytest. FastAPI on port 8001 acts as reverse proxy to Next.js on port 3000. All business logic is in Next.js API routes. Supabase database constraints: applications.timeframe only accepts 'asap' or 'next_season'. submissions.service_type is NOT NULL. PayPal and Email (Resend) are MOCKED. Use schema-compatible field names: 'full_name' for submissions, 'contact_name' for applications, 'additional_notes' not 'notes'.",
+
+  "mocked_apis": {
+    "note": "PayPal integration is MOCKED (returns fake order_id/txn_id). Email service (Resend) is MOCKED (console.log only). All other APIs are real Supabase calls.",
+    "list": ["PayPal create-order", "PayPal capture-order", "Resend email"]
+  },
+
+  "bug_fixed": {
+    "file": "/app/frontend/app/api/submissions/free/route.ts",
+    "issue": "Missing service_type field caused Supabase POST to fail with 400 (not-null constraint violation)",
+    "fix": "Added service_type: 'free_tier' to the data object before supabasePost"
+  }
+}

@@ -3,8 +3,9 @@ import { randomUUID } from 'crypto'
 import { supabasePatch } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
-  const orderId = request.nextUrl.searchParams.get('order_id') || ''
-  const submissionId = request.nextUrl.searchParams.get('submission_id') || ''
+  const body = await request.json().catch(() => ({}))
+  const orderId = body.order_id || request.nextUrl.searchParams.get('order_id') || ''
+  const submissionId = body.submission_id || request.nextUrl.searchParams.get('submission_id') || ''
   const txnId = `TXN-${randomUUID().slice(0, 12).toUpperCase()}`
 
   if (submissionId) {

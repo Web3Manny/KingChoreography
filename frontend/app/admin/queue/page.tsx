@@ -8,7 +8,10 @@ export default function AdminQueuePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getAdminQueue().then(r => setQueue(r || [])).catch(() => {}).finally(() => setLoading(false))
+    getAdminQueue().then(r => {
+      if (r && r.week) setQueue([{ ...r.week, submissions: r.submissions || [] }])
+      else setQueue(Array.isArray(r) ? r : [])
+    }).catch(() => {}).finally(() => setLoading(false))
   }, [])
 
   return (

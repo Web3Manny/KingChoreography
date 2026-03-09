@@ -8,6 +8,7 @@ export async function POST(request: NextRequest) {
   }
   const data = {
     ...body,
+    service_type: 'free_tier',
     calculated_amount: 0,
     price_breakdown: JSON.stringify({ type: 'free' }),
     payment_status: 'free',
